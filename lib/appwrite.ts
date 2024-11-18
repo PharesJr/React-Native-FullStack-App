@@ -85,6 +85,7 @@ export const signIn = async (email: string, password: string) => {
   }
 };
 
+//Function to get the current User
 export const getCurrentUser = async () => {
   try {
     const currentAccount = await account.get();
@@ -102,5 +103,23 @@ export const getCurrentUser = async () => {
     return currentUser.documents[0];
   } catch (error) {
     console.log(error);
+  }
+};
+
+//Function to fetch all Posts
+
+export const getAllPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videoCollectionId
+    );
+
+    return posts.documents;
+  } catch (error) {
+    console.error("Error getting Posts:", error);
+
+    // Use error.message if available, otherwise return the entire error object
+    throw new Error((error as any).message || "Failed to get posts");
   }
 };

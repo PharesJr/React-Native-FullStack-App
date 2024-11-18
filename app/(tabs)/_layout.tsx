@@ -18,6 +18,7 @@ const TabsLayout = () => {
             justifyContent: "space-evenly",
             backgroundColor: "#161622",
             borderTopColor: "#232533",
+            height: 55
           },
           tabBarItemStyle: {
             flexGrow: 1, // Distribute space evenly among all tabs

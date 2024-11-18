@@ -3,8 +3,12 @@ import React from 'react'
 
 const create = () => {
   return (
-    <View>
-      <Text>create</Text>
+    <View className='h-full bg-primary'>
+      <Text className='text-white'>create</Text>
+      <Text className='text-white'>create</Text>
+      <Text className='text-white'>create</Text>
+      <Text className='text-white'>create</Text>
+      <Text className='text-white'>create</Text>
     </View>
   )
 }
