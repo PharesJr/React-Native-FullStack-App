@@ -47,7 +47,7 @@ const FormField: React.FC<FormFieldProps> = ({
         />
         {title === "Password" && (
           <Text
-            className="text-md text-blue-400 font-psemibold"
+            className="text-md text-secondary font-psemibold"
             onPress={() => setShowPassword(!showPassword)}
           >
             {showPassword ? "Hide" : "Show"}
