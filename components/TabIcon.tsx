@@ -1,14 +1,17 @@
 import { View, Text, Image, ImageSourcePropType } from "react-native";
 import React from "react";
 
-interface TabIconProps {
-  icon: ImageSourcePropType; // Type for the image source
-  color: string; // Type for the tintColor
-  name: string; // Type for the tab name
-  focused: boolean; // Type for the focused state
-}
-
-const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
+const TabIcon = ({
+  icon,
+  color,
+  name,
+  focused,
+}: {
+  icon: ImageSourcePropType;
+  color: string;
+  name: string;
+  focused: boolean;
+}) => {
   return (
     <View className="items-center justify-center">
       <Image
@@ -19,8 +22,8 @@ const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
       />
       <Text
         className={`${focused ? "font-bold" : "font-pregular"} text-xs`}
-        style={{ width: "100%", textAlign: "center", color: color }} // Ensure text is centered and uses full width
-        numberOfLines={1} // Optional: Remove truncation if needed
+        style={{ width: "100%", textAlign: "center", color: color }}
+        numberOfLines={1}
       >
         {name}
       </Text>
