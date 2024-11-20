@@ -18,6 +18,7 @@ import { getAllPosts, getLatestPosts } from "@/lib/appwrite";
 import { Models } from "react-native-appwrite";
 import useAppwrite from "@/lib/useAppwrite";
 import VideoCard from "@/components/VideoCard";
+import { useGlobalContext } from "@/context/GlobalProvider";
 
 const home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts);
@@ -25,6 +26,8 @@ const home = () => {
   const { data: latestPosts } = useAppwrite(getLatestPosts);
 
   const [refreshing, setRefreshing] = useState(false);
+
+  const { user, setUser, setIsLogged } = useGlobalContext();
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -45,10 +48,10 @@ const home = () => {
             <View className="justify-between items-start flex-row mb-6">
               <View>
                 <Text className="font-pmedium text-sm text-gray-100">
-                  Welcome Back
+                  Welcome Back,
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
-                  Phairu
+                  {user?.username}
                 </Text>
               </View>
 
@@ -68,7 +71,7 @@ const home = () => {
                 Latest Videos
               </Text>
 
-              <Trending posts={latestPosts ?? [] } />
+              <Trending posts={latestPosts ?? []} />
             </View>
           </View>
         )}

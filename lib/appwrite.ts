@@ -143,10 +143,9 @@ export const getLatestPosts = async () => {
   }
 };
 
-
 //Function to search Posts
 
-export const searchPosts = async ({query}: any) => {
+export const searchPosts = async ({ query }: any) => {
   try {
     const posts = await databases.listDocuments(
       appwriteConfig.databaseId,
@@ -158,6 +157,37 @@ export const searchPosts = async ({query}: any) => {
   } catch (error) {
     console.error("Error getting Posts:", error);
 
+    // Use error.message if available, otherwise return the entire error object
+    throw new Error((error as any).message || "Failed to get posts");
+  }
+};
+
+//Function to get specific user post Posts
+
+export const getUserPosts = async ({ userId }: any) => {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videoCollectionId,
+      [Query.equal("creator", userId)]
+    );
+
+    return posts.documents;
+  } catch (error) {
+    console.error("Error getting Posts:", error);
+
+    // Use error.message if available, otherwise return the entire error object
+    throw new Error((error as any).message || "Failed to get posts");
+  }
+};
+
+// Function to Logout
+
+export const signOut = async () => {
+  try {
+    const session = await account.deleteSession("current");
+    return session;
+  } catch (error) {
     // Use error.message if available, otherwise return the entire error object
     throw new Error((error as any).message || "Failed to get posts");
   }
