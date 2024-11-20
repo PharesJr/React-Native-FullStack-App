@@ -1,6 +1,7 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { icons } from "@/constants";
+import VideoScreen from "./VideoPlayer";
 
 // Define prop types for VideoCard component
 interface VideoCardProps {
@@ -17,6 +18,8 @@ interface VideoCardProps {
 
 const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
   const [play, setPlay] = useState(false);
+
+  const videoSource: string = String(video.video);
 
   return (
     <View className="flex-col items-center px-4 mb-14">
@@ -50,7 +53,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
       </View>
 
       {play ? (
-        <Text className="text-white">Playing</Text>
+        <VideoScreen videoSource={videoSource} styling="w-full h-60 rounded-xl" />
       ) : (
         <TouchableOpacity
           activeOpacity={0.7}

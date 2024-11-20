@@ -123,3 +123,22 @@ export const getAllPosts = async () => {
     throw new Error((error as any).message || "Failed to get posts");
   }
 };
+
+//Function to fetch all Latest Posts
+
+export const getLatestPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videoCollectionId,
+      [Query.orderDesc("$createdAt"), Query.limit(7)]
+    );
+
+    return posts.documents;
+  } catch (error) {
+    console.error("Error getting Posts:", error);
+
+    // Use error.message if available, otherwise return the entire error object
+    throw new Error((error as any).message || "Failed to get posts");
+  }
+};

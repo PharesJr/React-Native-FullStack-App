@@ -17,7 +17,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-       "package": "com.phairu.aora-testapp"
+      "package": "com.phairu.aora-testapp"
     },
     "web": {
       "bundler": "metro",
@@ -35,7 +35,8 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-font"
+      "expo-font",
+      "expo-video"
     ],
     "experiments": {
       "typedRoutes": true

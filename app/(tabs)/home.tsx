@@ -13,7 +13,7 @@ import { images } from "../../constants";
 import SearchInput from "@/components/SearchInput";
 import Trending from "@/components/Trending";
 import EmptyState from "@/components/EmptyState";
-import { getAllPosts } from "@/lib/appwrite";
+import { getAllPosts, getLatestPosts } from "@/lib/appwrite";
 
 import { Models } from "react-native-appwrite";
 import useAppwrite from "@/lib/useAppwrite";
@@ -21,6 +21,8 @@ import VideoCard from "@/components/VideoCard";
 
 const home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts);
+
+  const { data: latestPosts } = useAppwrite(getLatestPosts);
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -35,7 +37,7 @@ const home = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
-        data={posts}
+        data={posts ?? []}
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => <VideoCard video={item} />}
         ListHeaderComponent={() => (
@@ -63,10 +65,10 @@ const home = () => {
 
             <View className="w-full flex-1 pt-5 pb-8">
               <Text className="text-gray-100 text-lg font-pregular">
-                Trending Videos
+                Latest Videos
               </Text>
 
-              <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }]} />
+              <Trending posts={latestPosts ?? [] } />
             </View>
           </View>
         )}
